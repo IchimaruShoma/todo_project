@@ -7,49 +7,63 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TodoController extends Controller
-{
+class TodoController extends Controller{
+     // タスクを一覧で表示
     public function index(){
-        $todoList = Todo::where('user_id', Auth::id())->paginate(7);
-
-        return view('layouts.master', compact('todoList'));
+        $todos = Todo::orderBy('id', 'asc')->get();
+        return view('todo.todoList', [
+            "todos" => $todos
+        ]);
     }
 
-    public function create(){
-        return view('layouts.create');
+    // タスク作成画面を表示
+    public function createPage(){
+        return view('todo.todo_create');
     }
 
-    public function store(Request $request){
-        $this->validate($request, ['name' => 'required']);
-
-        Todo::create([
-            'name' => $request->get('name'),
-            'user_id' => Auth::user()->id,
+    // タスクを新規作成
+    public function create(Request $request){
+        $validator = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
-        return redirect('/todo')
-            ->with('flash_notification.message', 'New todo created successfully')
-            ->with('flash_notification.level', 'success');
-    }
-
-    public function update($id){
-        $todo = Todo::findOrFail($id);
-        $todo->complete = !$todo->complete;
+        $todo = new Todo();
+        $todo->title = $request->title;
+        $todo->content = $request->content;
         $todo->save();
 
-        return redirect()
-            ->route('todo.index')
-            ->with('flash_notification.message', 'Todo updated successfully')
-            ->with('flash_notification.level', 'success');
+        return redirect('/todo');
     }
 
-    public function destroy($id){
-        $todo = Todo::findOrFail($id);
-        $todo->delete();
+    // タスク編集画面を表示
+    public function editPage($id){
+        $todo = Todo::find($id);
+        return view('todo.todo_edit', [
+            "todo" => $todo
+        ]);
+    }
 
-        return redirect()
-            ->route('todo.index')
-            ->with('flash_notification.message', 'Todo deleted successfully')
-            ->with('flash_notification.level', 'success');
+    // タスクを更新
+    public function edit(Request $request){
+        Todo::find($request->id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+        return redirect('/todo');
+    }
+
+    // タスク削除画面を表示
+    public function deletePage($id){
+        $todo = Todo::find($id);
+        return view('todo.todo_delete', [
+            "todo" => $todo
+        ]);
+    }
+
+    // タスクを削除
+    public function delete($id){
+        Todo::find($id)->delete();
+        return redirect('/todo');
     }
 }

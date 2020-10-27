@@ -8,8 +8,7 @@ class Todo extends Model{
     protected $table = 'todos';
 
     protected $fillable = [
-        'name',
-        'user_id',
+        'user_id','title','content',
     ];
 
     protected $casts = [

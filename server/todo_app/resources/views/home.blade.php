@@ -1,14 +1,27 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="text-center">
-        <h1>ToDo App</h1>
-        <hr/>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-        @include('partials.flash_notification')
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-        <p>はじめてのToDoあぷり</p>
+                    {{ __('You are logged in!') }}
+                </div>
+                <div>
+                    <td><a href="/todo">Todo一覧</a></td>
+                </div>
 
-        <h3><a href="https://github.com/IchimaruShoma">Ichimaru</a></h3>
+            </>
+        </div>
     </div>
+</div>
 @endsection

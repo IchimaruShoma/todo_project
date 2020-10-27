@@ -5,13 +5,24 @@ use Illuminate\Support\Facades\Route;
 // Home Page
 Route::get('/', 'AuthController@home');
 
-// Login and Logout
-Route::get('/login', ['middleware' => 'guest', 'uses' => 'AuthController@getLogin']);
-Route::post('/login', ['middleware' => 'guest', 'uses' => 'AuthController@postLogin']);
-Route::get('/logout', ['middleware' => 'auth', 'uses' => 'AuthController@logout']);
-
 // Registration and User Profile
 Route::resource('users', 'UserController', ['except' => ['index', 'show', 'destroy']]);
 
-// Todo Resources
-Route::resource('todo', 'TodoController', ['middleware' => 'auth']);
+Auth::routes();
+
+// ToDo
+Route::get('/todo', 'TodoController@index');
+
+Route::get('/create-todo', 'TodoController@createPage');
+Route::get('/edit-todo/{id}', 'TodoController@editPage');
+Route::get('/delete-todo/{id}', 'TodoController@deletePage');
+
+Route::post('/create', 'TodoController@create');
+Route::post('/edit', 'TodoController@edit');
+Route::post('/delete/{id}', 'TodoController@delete');
+
+
+// show phpinfo
+Route::get('phpinfo', function(){
+    return phpinfo();
+});
