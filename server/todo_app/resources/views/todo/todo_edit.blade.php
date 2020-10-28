@@ -1,6 +1,6 @@
 ﻿@extends('layouts.master')
 
-@section('content')
+@section('todo_content')
     <div>
         <h2>タスクの修正</h2>
         <form method="POST" action="/edit">

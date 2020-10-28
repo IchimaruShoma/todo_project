@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('todo_content')
     <div>
         <h2>タスクの一覧</h2>
         <a href="/create-todo">タスクを追加</a>

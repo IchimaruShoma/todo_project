@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('content')
+@section('todo_content')
     <div>
         <h2>タスクを追加</h2>
         <form method="POST" action="/create">
