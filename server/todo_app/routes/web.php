@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 // Home Page
 Route::get('/', 'AuthController@home');
 
+// show Sample page
+Route::get('/sample', function(){
+    return view('sample');
+});
+
+
 // Registration and User Profile
 Route::resource('users', 'UserController', ['except' => ['index', 'show', 'destroy']]);
 
