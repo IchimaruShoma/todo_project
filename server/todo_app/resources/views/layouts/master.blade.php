@@ -10,22 +10,15 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<b>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-center">
-        @yield('content')
-        @yield('login_content')
         @yield('todo_content')
+        @yield('sample')
       </div>
     </div>
   </div>
-  <div id='todolist'>
-    <ul>
-      <li v-for='todo in todos'>{{ todo.title }}</li>
-    </ul>
-  </div>
-
-  <script src="{{mix('js/app.js')}}"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

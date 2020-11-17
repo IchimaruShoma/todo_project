@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller{
-     // タスクを一覧で表示
+    // タスクを一覧で表示
     public function index(){
         $todos = Todo::orderBy('id', 'asc')->get();
-        return view('todo.todoList', [
-            "todos" => $todos
-        ]);
+        return view('todo.todoList');
+    }
+
+    public function getData(){
+        return \App\Models\Todo::all();
     }
 
     // タスク作成画面を表示

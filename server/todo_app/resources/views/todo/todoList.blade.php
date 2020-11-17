@@ -1,15 +1,9 @@
 @extends('layouts.master')
 
 @section('todo_content')
-  <div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-center">
-          <h1>タスクの一覧</h1>
-          <a href="/create-todo">タスクを追加</a>
-        </div>
-      </div>
-  </div>
+<div>
+  <h1>タスクの一覧</h1>
+  <a href="/create-todo">タスクを追加</a>
   <table border="1">
     <tr>
         <th>タスクの名前</th>
@@ -25,12 +19,11 @@
         <td><a href="/delete-todo/{{$todo->id}}">削除</a></td>
     </tr>
     @endforeach --}}
-    <div id='app'>
-      <tr>
-        <td v-for="todo in todos">{{ todo.title }}</td>
-      </tr>
-    </div>
 
-    </table>
+  </table>
+    {{-- @foreach を Vueで置き換えたい --}}
+  <div id="app">
+    <todolist></todolist>
   </div>
+</div>
 @endsection

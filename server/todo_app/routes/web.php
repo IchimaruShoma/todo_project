@@ -18,6 +18,7 @@ Auth::routes();
 
 // ToDo
 Route::get('/todo', 'TodoController@index');
+Route::get('/api/todo', 'TodoController@getData');
 
 Route::get('/create-todo', 'TodoController@createPage');
 Route::get('/edit-todo/{id}', 'TodoController@editPage');
