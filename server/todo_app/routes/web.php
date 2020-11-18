@@ -11,6 +11,11 @@ Route::resource('users', 'UserController', ['except' => ['index', 'show', 'destr
 
 Auth::routes();
 
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
+});
+
 // ToDo
 Route::get('/todo', 'TodoController@index');
 Route::get('/api/todo', 'TodoController@getData');
@@ -27,7 +32,3 @@ Route::post('/delete/{id}', 'TodoController@delete');
 Route::get('phpinfo', function(){
     return phpinfo();
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
