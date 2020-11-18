@@ -11,15 +11,6 @@
         <th colspan="2">操作</th>
     </tr>
 
-    {{-- @foreach($todos as $todo)
-    <tr>
-        <td>{{$todo->title}}</td>
-        <td>{{$todo->content}}</td>
-        <td><a href="/edit-todo/{{$todo->id}}">編集</a></td>
-        <td><a href="/delete-todo/{{$todo->id}}">削除</a></td>
-    </tr>
-    @endforeach --}}
-
   </table>
     {{-- @foreach を Vueで置き換えたい --}}
   <div id="app">

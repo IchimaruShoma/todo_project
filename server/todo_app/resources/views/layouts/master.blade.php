@@ -10,10 +10,12 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<b>
+<body>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-center">
+        @yield('register_content')
+        @yield('login_content')
         @yield('todo_content')
         @yield('sample')
       </div>

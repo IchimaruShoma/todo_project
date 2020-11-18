@@ -1953,6 +1953,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     //データの初期値を設定
@@ -1964,9 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
     getTodos: function getTodos() {
       var _this = this;
 
-      var data = {
-        id: '1'
-      };
+      var data = {};
       var self = this;
       axios.get('/api/todo', data).then(function (res) {
         _this.todos = res.data;
@@ -37618,30 +37618,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    _vm._l(_vm.todos, function(todo, index) {
-      return _c("tr", { key: index }, [
-        _c("td", [_vm._v(_vm._s(todo.title))]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(todo.content))]),
-        _vm._v(" "),
-        _c("td", [
-          _c("a", { attrs: { href: "/edit-todo/" + todo.id } }, [
-            _vm._v("編集")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("td", [
-          _c("a", { attrs: { href: "/delete-todo/" + todo.id } }, [
-            _vm._v("削除")
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "table",
+      { attrs: { border: "1" } },
+      _vm._l(_vm.todos, function(todo, index) {
+        return _c("tr", { key: index }, [
+          _c("td", [_vm._v(_vm._s(todo.title))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(todo.content))]),
+          _vm._v(" "),
+          _c("td", [
+            _c("a", { attrs: { href: "/edit-todo/" + todo.id } }, [
+              _vm._v("編集")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _c("a", { attrs: { href: "/delete-todo/" + todo.id } }, [
+              _vm._v("削除")
+            ])
           ])
         ])
-      ])
-    }),
-    0
-  )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

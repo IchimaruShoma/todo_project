@@ -14,6 +14,7 @@ class TodoController extends Controller{
         return view('todo.todoList');
     }
 
+    // タスクデータをすべて取得
     public function getData(){
         return \App\Models\Todo::all();
     }

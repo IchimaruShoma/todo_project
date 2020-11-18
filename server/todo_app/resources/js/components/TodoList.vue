@@ -1,12 +1,14 @@
 ﻿<template>
   <div class="container">
-    <tr v-for="(todo, index) in todos" :key=index>
-      <td>{{ todo.title }}</td>
-      <td>{{ todo.content }}</td>
-      <td><a :href="'/edit-todo/' + todo.id ">編集</a></td>
-      <td><a :href="'/delete-todo/' + todo.id ">削除</a></td>
-      <!-- <a :href="post.fields.url">{{post.fields.url}}</a> -->
-    </tr>
+    <table border="1">
+      <tr v-for="(todo, index) in todos" :key=index>
+        <td>{{ todo.title }}</td>
+        <td>{{ todo.content }}</td>
+        <td><a :href="'/edit-todo/' + todo.id ">編集</a></td>
+        <td><a :href="'/delete-todo/' + todo.id ">削除</a></td>
+        <!-- <a :href="post.fields.url">{{post.fields.url}}</a> -->
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -19,9 +21,7 @@ export default {
   },
   methods: {
     getTodos() {
-      const data = {
-        id: '1'
-      }
+      const data = {}
       var self = this;
       axios.get('/api/todo', data)
         .then(res =>  {

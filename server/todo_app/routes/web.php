@@ -4,12 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Home Page
 Route::get('/', 'AuthController@home');
-
-// show Sample page
-Route::get('/sample', function(){
-    return view('sample');
-});
-
+Route::get('/login', 'AuthController@getLogin');
 
 // Registration and User Profile
 Route::resource('users', 'UserController', ['except' => ['index', 'show', 'destroy']]);
@@ -28,8 +23,11 @@ Route::post('/create', 'TodoController@create');
 Route::post('/edit', 'TodoController@edit');
 Route::post('/delete/{id}', 'TodoController@delete');
 
-
 // show phpinfo
 Route::get('phpinfo', function(){
     return phpinfo();
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
